@@ -16,8 +16,8 @@ export default function ParticleBackground() {
             // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
             // starting from v2 you can add only the features you need reducing the bundle size
             //await loadAll(engine);
-            // await loadFull(engine);
-            // await loadSlim(engine);
+            await loadFull(engine);
+            //await loadSlim(engine);
             //await loadBasic(engine);
             await loadImageShape(engine);
 
@@ -26,9 +26,9 @@ export default function ParticleBackground() {
         });
     }, []);
 
-    const particlesLoaded = useCallback(async (container?: any) => {
-        console.log(container);
-    }, []);
+    // const particlesLoaded = useCallback(async (container?: any) => {
+    //     console.log(container);
+    // }, []);
 
     const options: ISourceOptions = {
         fullScreen: {
@@ -50,28 +50,28 @@ export default function ParticleBackground() {
                 type: "image",
                 options: {
                     image: [
-                        // {
-                        //     // src: "/particle/asian-flower-1.png",
-                        //     src: "/particle/asian-flower-1.png",
-                        //     width: 100,
-                        //     height: 100,
-                        //     // replaceColor: true, // Thay thế màu nền
-                        //     // fill: true, // Không vẽ outline
-                        // },
-                        // {
-                        //     src: "/particle/asian-flower.png",
-                        //     width: 100,
-                        //     height: 100,
-                        //     // replaceColor: true, // Thay thế màu nền
-                        //     // fill: true, // Không vẽ outline
-                        // },
                         {
-                            src: "/particle/snowflake.png",
+                            // src: "/particle/asian-flower-1.png",
+                            src: "/particle/asian-flower-1.png",
                             width: 100,
                             height: 100,
                             // replaceColor: true, // Thay thế màu nền
                             // fill: true, // Không vẽ outline
                         },
+                        {
+                            src: "/particle/asian-flower.png",
+                            width: 100,
+                            height: 100,
+                            // replaceColor: true, // Thay thế màu nền
+                            // fill: true, // Không vẽ outline
+                        },
+                        // {
+                        //     src: "/particle/snowflake.png",
+                        //     width: 100,
+                        //     height: 100,
+                        //     // replaceColor: true, // Thay thế màu nền
+                        //     // fill: true, // Không vẽ outline
+                        // },
                     ],
                 },
             },
@@ -153,14 +153,14 @@ export default function ParticleBackground() {
         detectRetina: true,
     };
 
+    if (!init) console.log("Particle aaaaa");
     if (!init) return null;
 
     return (
-        init &&
         <Particles
             id="tsparticles"
             options={options}
-            particlesLoaded={particlesLoaded}
+            // particlesLoaded={particlesLoaded}
         />
     );
 }
