@@ -152,10 +152,7 @@ export default function ParticleBackground() {
         },
         detectRetina: true,
     };
-
-    if (!init) console.log("Particle aaaaa");
     if (!init) return null;
-
     return (
         <Particles
             id="tsparticles"

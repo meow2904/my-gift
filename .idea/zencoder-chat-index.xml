@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ai.zencoder.plugin.chat.index">
+    <option name="activeChatId" value="f84078c1-48b8-4c1e-bc5a-46fdb1595afc" />
+    <option name="chatMetadata" value="{&quot;f84078c1-48b8-4c1e-bc5a-46fdb1595afc&quot;:{&quot;id&quot;:&quot;f84078c1-48b8-4c1e-bc5a-46fdb1595afc&quot;,&quot;title&quot;:&quot;FormData File Upload Debugging&quot;,&quot;createdAt&quot;:1760349225354,&quot;updatedAt&quot;:1760350046285,&quot;isAgent&quot;:true,&quot;isNameGenerated&quot;:true,&quot;messageCount&quot;:6,&quot;lastMessagePreview&quot;:&quot;**Enhancing API error handling and environment checks**\n\nI'm reviewing the backend upload route to r...&quot;}}" />
+  </component>
+</project>
