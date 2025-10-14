@@ -27,12 +27,6 @@ const LinkShare: React.FC<LinkShareProps> = ({
         }
     }
 
-    const handleRegenerate = () => {
-        // Generate a new random link
-        const randomId = Math.random().toString(36).substring(2, 15)
-        setShareLink(`https://example.com/share/${randomId}`)
-        setCopied(false)
-    }
 
     return (
         <div className="w-full max-w-2xl p-8 md:p-12 shadow-2xl backdrop-blur-sm bg-card/95  rounded-3xl bg-pink-50/50">

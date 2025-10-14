@@ -3,11 +3,8 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
     try {
-
         const formData = await req.formData();
         const files = formData.getAll('files') as File[];
-
-        console.log('Received files:', files.length);
 
         if (files.length === 0) {
             return NextResponse.json(
@@ -34,8 +31,8 @@ export async function POST(req: Request) {
             const blob = await put(file.name, buffer, {
                 access: 'public',
                 contentType: file.type
-            });
 
+            });
             urls.push(blob.url);
         }
 
