@@ -5,7 +5,7 @@ import {type DragEvent, type ChangeEvent, useCallback, FormEvent, useEffect} fro
 
 import {useRef, useState} from "react"
 import {X, Upload, Heart, Sparkles, ImageIcon, Rocket} from "lucide-react"
-import LinkShare from "@/components/ui/link-share";
+import LinkShare from "../share-link";
 import toast from "react-hot-toast";
 import {UploadedFile} from "@/types/file-upload/upload";
 import {Loading} from "../loading";
@@ -14,7 +14,7 @@ import {Loading} from "../loading";
 // import { Textarea } from "@/components/ui/textarea"
 // import { Card } from "@/components/ui/card"
 
-export default function GiftPageUpload() {
+export default function GiftFormUpload() {
     const [loading, setLoading] = useState(false);
     const [files, setFiles] = useState<UploadedFile[]>([])
     const [isDragging, setIsDragging] = useState(false)
@@ -112,7 +112,7 @@ export default function GiftPageUpload() {
                     method: 'POST',
                     body: formData
                 });
-            if (uploadRes.status !== 200) {
+            if (!uploadRes.ok) {
                 toast.error("Upload fail")
                 return
             }
@@ -124,7 +124,7 @@ export default function GiftPageUpload() {
                 body: JSON.stringify({name, message, imageUrls: urls}),
                 headers: {'Content-Type': 'application/json'},
             });
-            if (linkRes.status !== 200) {
+            if (!linkRes.ok) {
                 toast.error("Create gift fail")
                 return
             }

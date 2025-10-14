@@ -40,7 +40,7 @@ export async function POST(req: Request) {
 
         const client = await getRedisClient();
         await client.set(`gift:${shortId}`,
-            data.toString(),
+            JSON.stringify(data),
             {
                 EX: 60 * 60 * 24 * 0.5, // Expire sau 2 ngày (optional)
             });
@@ -77,13 +77,12 @@ export async function GET(req: Request) {
 
         if (!data) {
             return NextResponse.json(
-                {error: 'Gift not found'},
+                {error: 'Data not found'},
                 {status: 404}
             );
         }
-
-        return NextResponse.json(data);
-
+        const giftData = JSON.parse(data);
+        return NextResponse.json(giftData);
     } catch (error) {
         console.error('Error getting link:', error);
         return NextResponse.json(
