@@ -18,12 +18,9 @@
     "next": "15.5.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-<<<<<<< Updated upstream
-=======
     "react-hot-toast": "^2.6.0",
     "react-slideshow-image": "^4.3.2",
     "redis": "^5.8.3",
->>>>>>> Stashed changes
     "tsparticles": "^3.9.1"
   },
   "devDependencies": {
