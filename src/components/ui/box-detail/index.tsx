@@ -61,6 +61,14 @@ const BoxDetail: React.FC = () => {
         })
     }
 
+    const icons = ["🎂", "😊", "💖", "⭐", "🧁", "🥰", "🎉", "🎈", "🍰", "✨", "💝", "🌟", "🎁", "🍭", "🦄"]
+    const randomIcons = Array.from({ length: 25 }, (_, i) => ({
+        icon: icons[Math.floor(Math.random() * icons.length)],
+        top: `${Math.random() * 85 + 5}%`,
+        left: `${Math.random() * 85 + 5}%`,
+        rotation: Math.random() * 360 - 180,
+    }))
+
     // Danh sách icon và vị trí cố định
     const fixedIcons = [
         { icon: "🎂", top: "50%", left: "25%", rotation: -10 },

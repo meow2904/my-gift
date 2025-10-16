@@ -16,7 +16,7 @@ export function ImageCarousel({images, compact = false}: ImageCarouselProps) {
     const currentImage = images[currentIndex]
     if (compact) {
         return (
-            <div className="bg-white/65 backdrop-blur-md rounded-2xl p-4 shadow-2xl w-full max-w-2xl">
+            <div className="bg-white/65 backdrop-blur-md rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-xl md:shadow-2xl w-full max-w-sm sm:max-w-md md:max-w-2xl">
                 {/* Image frame - compact version */}
                 <div className="bg-gradient-to-br from-pink-100 to-white p-3 rounded-xl shadow-lg mb-3">
                     <img
