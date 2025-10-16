@@ -8,6 +8,7 @@ import {motion, useAnimation} from "framer-motion"
 import {useState} from "react"
 import {ImageCarousel} from "@/components/ui/cute-carousel";
 import {giftImages} from "@/data/sample";
+import MessageCard from "@/components/ui/message-detail";
 
 const BoxDetail: React.FC = () => {
     const params = useParams();
@@ -57,12 +58,12 @@ const BoxDetail: React.FC = () => {
             opacity: 1,
             y: 0,
             scale: 1,
-            transition: { duration: 0.6, delay: 0.2 },
+            transition: {duration: 0.6, delay: 0.2},
         })
     }
 
     const icons = ["🎂", "😊", "💖", "⭐", "🧁", "🥰", "🎉", "🎈", "🍰", "✨", "💝", "🌟", "🎁", "🍭", "🦄"]
-    const randomIcons = Array.from({ length: 25 }, (_, i) => ({
+    const randomIcons = Array.from({length: 25}, (_, i) => ({
         icon: icons[Math.floor(Math.random() * icons.length)],
         top: `${Math.random() * 85 + 5}%`,
         left: `${Math.random() * 85 + 5}%`,
@@ -71,27 +72,68 @@ const BoxDetail: React.FC = () => {
 
     // Danh sách icon và vị trí cố định
     const fixedIcons = [
-        { icon: "🎂", top: "50%", left: "25%", rotation: -10 },
-        { icon: "😊", top: "39%", left: "60%", rotation: 5 },
-        { icon: "💖", top: "50%", left: "70%", rotation: 0 },
-        { icon: "⭐", top: "60%", left: "20%", rotation: 15 },
-        { icon: "🧁", top: "70%", left: "58%", rotation: -20 },
-        { icon: "🎉", top: "45%", left: "85%", rotation: 10 },
-        { icon: "🥰", top: "85%", left: "31%", rotation: -15 },
-        { icon: "🍰", top: "65%", left: "9%", rotation: -15 },
-        { icon: "✨", top: "37%", left: "10%", rotation: -15 },
-        { icon: "💝", top: "85%", left: "12%", rotation: -15 },
-        { icon: "🌟", top: "85%", left: "85%", rotation: -15 },
-        { icon: "🎁", top: "65%", left: "35%", rotation: -15 },
-        { icon: "🍭", top: "65%", left: "90%", rotation: -15 },
-        { icon: "🦄", top: "75%", left: "75%", rotation: -15 },
+        {icon: "🎂", top: "50%", left: "25%", rotation: -10},
+        {icon: "😊", top: "39%", left: "60%", rotation: 5},
+        {icon: "💖", top: "50%", left: "70%", rotation: 0},
+        {icon: "⭐", top: "60%", left: "20%", rotation: 15},
+        {icon: "🧁", top: "70%", left: "58%", rotation: -20},
+        {icon: "🎉", top: "45%", left: "85%", rotation: 10},
+        {icon: "🥰", top: "85%", left: "31%", rotation: -15},
+        {icon: "🍰", top: "65%", left: "9%", rotation: -15},
+        {icon: "✨", top: "37%", left: "10%", rotation: -15},
+        {icon: "💝", top: "85%", left: "12%", rotation: -15},
+        {icon: "🌟", top: "85%", left: "85%", rotation: -15},
+        {icon: "🎁", top: "65%", left: "35%", rotation: -15},
+        {icon: "🍭", top: "65%", left: "90%", rotation: -15},
+        {icon: "🦄", top: "75%", left: "75%", rotation: -15},
     ]
 
+    const finalContent = (
+        <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold text-pink-600">Thư Xin Lỗi 💕</h2>
+            <p className="text-pink-500 leading-relaxed">Dành cho người yêu xinh đẹp của anh</p>
+            <p className="text-pink-600 font-semibold">Em yêu của anh 💕</p>
+            <div className="text-pink-500 text-sm leading-relaxed space-y-3">
+                <p>
+                    Anh không muốn cãi nhau với em nữa. Mỗi lần chúng ta to tiếng, anh cảm thấy có gì đó tan vỡ trong
+                    lòng, vì
+                    điều duy nhất anh muốn là thấy em cười và hạnh phúc bên anh.
+                </p>
+                <p>
+                    Em là điều tuyệt vời nhất trong cuộc đời anh. Từ khi có em, mọi thứ đều có ý nghĩa và đầy màu sắc
+                    hơn. Dù ngày
+                    có khó khăn đến đâu, chỉ cần nhìn thấy em, mọi thứ lại trở nên tốt đẹp.
+                </p>
+            </div>
+            <p className="text-pink-600 font-semibold mt-6">
+                Với tất cả tình yêu,
+                <br/>
+                Người yêu em sâu đậm 💕
+            </p>
+            <div className="text-2xl">💖 ✨ 💕</div>
+        </div>
+    )
 
+    const message = `
+        Nhân ngày 20/10, anh chúc em luôn xinh đẹp, hạnh phúc và tràn đầy năng lượng tích cực 💐  
+        Em chính là món quà tuyệt vời nhất mà cuộc đời đã ban cho anh.  
+        Mỗi ngày trôi qua có em, anh thấy mọi thứ đều rực rỡ hơn 🌸  
+        Cảm ơn em đã luôn ở bên anh, yêu và hiểu anh hơn bất cứ ai 💕
+          `;
+
+    const loveCard = (
+        <MessageCard
+            title="💐 Lời Chúc 20/10"
+            subtitle="Gửi đến em - người con gái tuyệt vời nhất"
+            message={message}
+            signature="Người yêu em ❤️"
+        />
+    );
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-400 via-pink-400 to-red-400">
-            <div className="relative cursor-pointer mt-12" style={{ perspective: "1000px" }} onClick={handleClick}>
+        <div
+            className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-400 via-pink-400 to-red-400">
+            <div className="relative cursor-pointer mt-12" style={{perspective: "1000px"}} onClick={handleClick}>
                 <div className="relative">
                     {/* Thân hộp */}
                     <div
@@ -116,13 +158,16 @@ const BoxDetail: React.FC = () => {
                         ))}
 
                         {/* Ribbon dọc */}
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-full bg-gradient-to-b from-yellow-300 to-yellow-400 shadow-lg" />
+                        <div
+                            className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-full bg-gradient-to-b from-yellow-300 to-yellow-400 shadow-lg"/>
 
                         {/* Ribbon ngang */}
-                        <div className="absolute top-1/3 -translate-y-1/2 left-0 w-full h-6 bg-gradient-to-r from-yellow-300 to-yellow-400 shadow-lg" />
+                        <div
+                            className="absolute top-1/3 -translate-y-1/2 left-0 w-full h-6 bg-gradient-to-r from-yellow-300 to-yellow-400 shadow-lg"/>
 
                         {/* Hiệu ứng ánh sáng */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
+                        <div
+                            className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none"/>
                     </div>
 
                     {/* Nắp hộp */}
@@ -136,46 +181,53 @@ const BoxDetail: React.FC = () => {
                         }}
                     >
                         {/* Ribbon trên nắp */}
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-full bg-gradient-to-b from-yellow-300 to-yellow-400" />
+                        <div
+                            className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-full bg-gradient-to-b from-yellow-300 to-yellow-400"/>
 
                         {/* Nơ trên nắp */}
                         <div className="absolute -top-6 left-1/2 -translate-x-1/2">
                             <div className="relative">
-                                <div className="absolute -left-8 top-1/4 w-8 h-8 bg-gradient-to-br from-yellow-300 to-yellow-500 rounded-full transform -rotate-45 shadow-lg" />
-                                <div className="absolute -right-8 top-1/4 w-8 h-8 bg-gradient-to-br from-yellow-300 to-yellow-500 rounded-full transform rotate-45 shadow-lg" />
-                                <div className="absolute left-1/2 top-5 -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full shadow-lg z-10" />
+                                <div
+                                    className="absolute -left-8 top-1/4 w-8 h-8 bg-gradient-to-br from-yellow-300 to-yellow-500 rounded-full transform -rotate-45 shadow-lg"/>
+                                <div
+                                    className="absolute -right-8 top-1/4 w-8 h-8 bg-gradient-to-br from-yellow-300 to-yellow-500 rounded-full transform rotate-45 shadow-lg"/>
+                                <div
+                                    className="absolute left-1/2 top-5 -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full shadow-lg z-10"/>
                             </div>
                         </div>
 
                         {/* Hiệu ứng ánh sáng nắp */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-t-lg pointer-events-none" />
+                        <div
+                            className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-t-lg pointer-events-none"/>
                     </motion.div>
                 </div>
 
                 {/* Bóng đổ */}
-                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-72 h-8 bg-black/20 rounded-full blur-xl" />
+                <div
+                    className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-72 h-8 bg-black/20 rounded-full blur-xl"/>
             </div>
 
             {/* Text hướng dẫn */}
             <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                transition={{delay: 0.5}}
                 className="text-white mt-12 text-2xl font-bold drop-shadow-lg"
             >
                 {opened ? "🎊 Hẹ hẹ hẹ ... !" : "👆 Nhấn để mở quà"}
             </motion.p>
 
             <motion.div
-                initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                initial={{opacity: 0, y: 20, scale: 0.8}}
                 animate={messageControls}
                 className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 ${
                     opened ? "pointer-events-auto" : "pointer-events-none"
                 }`}
-                style={{ width: "500px", height: "700px" }}
+                style={{width: "500px", height: "700px"}}
             >
-                <div className="w-full h-full flex flex items-start justify-center">
-                    <ImageCarousel images={giftImages} compact />
+                <div className="w-full h-full flex items-start justify-center">
+                    {/*<ImageCarousel images={giftImages} finalContent={finalContent}/>*/}
+                    <ImageCarousel images={giftImages} finalContent={loveCard}/>
                 </div>
             </motion.div>
 

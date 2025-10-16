@@ -41,3 +41,13 @@ body {
 ::-webkit-scrollbar-button {
   display: none;
 }
+
+.scroll-container {
+  overflow-y: auto;
+  max-height: 400px; /* tùy bạn */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+  scroll-snap-type: y proximity; /* mềm mại hơn mandatory */
+}
+
