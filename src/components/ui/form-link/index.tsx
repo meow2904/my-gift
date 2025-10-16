@@ -1,23 +1,20 @@
 "use client"
 
 
-import {type DragEvent, type ChangeEvent, useCallback, FormEvent} from "react"
+import {type DragEvent, type ChangeEvent, useCallback, FormEvent, useEffect} from "react"
 
 import {useRef, useState} from "react"
 import {X, Upload, Heart, Sparkles, ImageIcon, Rocket} from "lucide-react"
-import LinkShare from "@/components/ui/link-share";
+import LinkShare from "../share-link";
+import toast from "react-hot-toast";
+import {UploadedFile} from "@/types/file-upload/upload";
+import {Loading} from "../loading";
 // import { Button } from "@/components/ui/button"
 // import { Input } from "@/components/ui/input"
 // import { Textarea } from "@/components/ui/textarea"
 // import { Card } from "@/components/ui/card"
 
-interface UploadedFile {
-    id: string
-    file: File
-    preview: string
-}
-
-export default function GiftPageUpload() {
+export default function GiftFormUpload() {
     const [loading, setLoading] = useState(false);
     const [files, setFiles] = useState<UploadedFile[]>([])
     const [isDragging, setIsDragging] = useState(false)
@@ -87,7 +84,6 @@ export default function GiftPageUpload() {
 
     const handleCreateLink = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
         if (!validate()) {
             return;
         }
@@ -95,26 +91,48 @@ export default function GiftPageUpload() {
 
         try {
             const formData = new FormData();
-            files.forEach(({file}) => formData.append('files', file, file.name));
+            files.forEach(({file}) => {
+                const ext = file.name.split('.').pop(); // lấy phần mở rộng
+                const now = new Date();
+
+                // format thành yyyymmddhhmmss
+                const formattedTime = now
+                    .toISOString()
+                    .replace(/[-:TZ]/g, '') // bỏ ký tự thừa
+                    .slice(0, 14); // lấy 14 ký tự đầu → yyyyMMddHHmmss
+
+                const randomSuffix = Math.random().toString(36).substring(2, 6); // 4 ký tự random
+                const newFileName = `${formattedTime}_${randomSuffix}.${ext}`;
+
+                formData.append('files', file, newFileName);
+            });
 
             const uploadRes = await fetch('/api/upload',
                 {
                     method: 'POST',
                     body: formData
                 });
+            if (!uploadRes.ok) {
+                toast.error("Upload fail")
+                return
+            }
             const {urls} = await uploadRes.json();
-            debugger
-            //
-            // // 2️⃣ Lưu thông tin vào KV
-            // const res = await fetch('/api/link', {
-            //     method: 'POST',
-            //     body: JSON.stringify({ message, imageUrls: urls }),
-            //     headers: { 'Content-Type': 'application/json' },
-            // });
-            //
-            // const dataLink = await res.json();
-            // console.log({dataLink})
-            // setLink(dataLink.link);
+
+            // Lưu thông tin vào KV
+            const linkRes = await fetch('/api/link', {
+                method: 'POST',
+                body: JSON.stringify({name, message, imageUrls: urls}),
+                headers: {'Content-Type': 'application/json'},
+            });
+            if (!linkRes.ok) {
+                toast.error("Create gift fail")
+                return
+            }
+
+            const dataLink = await linkRes.json();
+            setLink(dataLink.link);
+        } catch (err: any) {
+            toast.error("Có lỗi gì đó đã xảy ra ")
         } finally {
             setLoading(false);
         }
@@ -122,11 +140,19 @@ export default function GiftPageUpload() {
 
     const validate = () => {
         if (files.length === 0) {
-            alert('Hãy chọn ít nhất 1 ảnh');
+            toast.error("Hãy tải lên ít nhất một file ảnh!")
             return false;
         }
-        // if (name.length === 0) return alert('Hãy nhập tên của bạn!');
-        // if (message.length === 0) return alert('Hãy nhắn gửi gì đó!');
+        if (name.length === 0)
+        {
+            toast.error("Hãy nhập tên của bạn!")
+            return false;
+        }
+        if (message.length === 0)
+        {
+            toast.error("Hãy nhắn gửi gì đó!")
+            return false;
+        }
         return true;
     }
 
@@ -137,22 +163,26 @@ export default function GiftPageUpload() {
         setLink("")
     }, [])
 
+    useEffect(() => {
+        return () => {
+            files.forEach(f => URL.revokeObjectURL(f.preview));
+        };
+    }, [files]);
 
     return (
         <div className="min-h-screen gradient-bg flex items-center justify-center p-4 relative overflow-hidden">
-            {/* Decorative floating elements */}
-            {/*<div className="absolute top-10 left-10 text-primary/20 float">*/}
-            {/*    <Heart className="w-12 h-12" fill="currentColor" />*/}
-            {/*</div>*/}
-            {/*<div className="absolute top-20 right-20 text-secondary/20 float" style={{ animationDelay: "1s" }}>*/}
-            {/*    <Sparkles className="w-16 h-16" />*/}
-            {/*</div>*/}
-            {/*<div className="absolute bottom-20 left-20 text-accent/20 float" style={{ animationDelay: "2s" }}>*/}
-            {/*    <Heart className="w-10 h-10" fill="currentColor" />*/}
-            {/*</div>*/}
-            {/*<div className="absolute bottom-32 right-32 text-primary/20 sparkle">*/}
-            {/*    <Sparkles className="w-8 h-8" />*/}
-            {/*</div>*/}
+            <div className="absolute top-10 left-10 float">
+                <Heart className="w-12 h-12 text-purple-300/50" fill="currentColor" />
+            </div>
+            <div className="absolute top-20 right-20 text-secondary/20 float" style={{ animationDelay: "1s" }}>
+                <Sparkles className="w-16 h-16 text-gray-200" />
+            </div>
+            <div className="absolute bottom-20 left-20 text-fuchsia-300/20 float" style={{ animationDelay: "2s" }}>
+                <Heart className="w-10 h-10" fill="currentColor" />
+            </div>
+            <div className="absolute bottom-32 right-32 text-yellow-300 sparkle">
+                <Sparkles className="w-8 h-8" />
+            </div>
 
             {
                 link.length == 0 && (
@@ -179,7 +209,6 @@ export default function GiftPageUpload() {
                             >
                                 <input ref={fileInputRef} type="file" multiple accept="image/*" onChange={handleFileInput}
                                        className="hidden"/>
-
                                 <div className="flex flex-col items-center gap-2">
                                     <div className="rounded-full bg-primary/10 p-2">
                                         <Upload className="w-8 h-8 text-primary"/>
@@ -267,12 +296,22 @@ export default function GiftPageUpload() {
                             {/* Action Buttons */}
                             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center ">
                                 <button type="submit"
-                                        className="md:w-1/3 rounded-2xl text-base font-semibold h-14 bg-gradient-to-r
+                                        disabled={loading}
+                                        className={`md:w-1/3 rounded-2xl text-base font-semibold h-14 bg-gradient-to-r
                                          from-primary to-secondary hover:shadow-lg hover:scale-105 transition-all
-                                         flex items-center justify-center gap-2 border-1 border-pink-300 "
-                                >
-                                    Gửi lời chúc
-                                    <Rocket className="w-4 h-4 text-red-400/50" fill="currentColor"/>
+                                         flex items-center justify-center gap-2 border-1 border-pink-300  
+                                         ${loading ? '' : 'hover:cursor-pointer'}`}
+                                    >
+
+                                    {
+                                        loading ? (
+                                        <Loading variant="dots" size="sm" text="Đang tạo..."/>
+                                    ) : (
+                                        <>
+                                            Chia sẻ
+                                            <Rocket className="w-4 h-4 text-red-400/50" fill="currentColor"/>
+                                        </>
+                                    )}
                                 </button>
                             </div>
                         </div>

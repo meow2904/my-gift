@@ -1,8 +1,12 @@
+
 import ParticleBackground from "@/components/pages/test";
 import BoxDetail from "@/components/ui/box-detail";
+export default function  GiftBoxDetail() {
 
-export default function GiftBoxDetail() {
     return (
-        <BoxDetail/>
+        <>
+            {/*<ParticleBackground></ParticleBackground>*/}
+            <BoxDetail></BoxDetail>
+        </>
     )
 }
