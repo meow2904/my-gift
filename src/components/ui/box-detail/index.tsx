@@ -1,37 +1,38 @@
 "use client"
 
 import {useParams} from "next/navigation";
-import {useCallback, useEffect} from "react";
+import {useCallback, useEffect, useState} from "react";
 import toast from "react-hot-toast";
 
 import {motion, useAnimation} from "framer-motion"
-import {useState} from "react"
 import {ImageCarousel} from "@/components/ui/cute-carousel";
-import {giftImages} from "@/data/sample";
+import {generateGiftImages, giftTemplates, messageTemp} from "@/data/sample";
 import MessageCard from "@/components/ui/message-detail";
+import {ImageData} from "@/data/sample";
 
 const BoxDetail: React.FC = () => {
+    const [signature, setSignature] = useState("No name")
+    const [messageText, setMessageText] = useState(messageTemp)
+    const [title, setTitle] = useState("💐 Day 20/10")
+    const [subTitle, setSubTitle] = useState("Gửi đến em - người con gái tuyệt vời nhất")
+    const [imageMessage, setImageMessage] = useState<ImageData[]>(giftTemplates)
     const params = useParams();
     const id = params.id as string;
+    const getData = useCallback(async () => {
+        const response = await fetch(`/api/link?id=${id}`);
+        if (!response.ok) {
+            const errorData = await response.json();
+            toast.error(errorData.error || 'Gift not found');
+        }
+        const data = await response.json();
+        setSignature(data.name);
+        setMessageText(data.message);
+        setImageMessage(generateGiftImages(data.imageUrls))
+    }, [])
 
-    // const getData = useCallback(async () => {
-    //     try {
-    //         const response = await fetch(`/api/link?id=${id}`);
-    //         if (!response.ok) {
-    //             const errorData = await response.json();
-    //             toast.error(errorData.error || 'Gift not found');
-    //         }
-    //         const data = await response.json();
-    //         console.log({data});
-    //     }
-    //     finally {
-    //
-    //     }
-    // }, [])
-    //
-    // useEffect( () => {
-    //     getData()
-    // }, []);
+    useEffect(() => {
+        getData()
+    }, []);
 
     const [opened, setOpened] = useState(false)
     const lidControls = useAnimation()
@@ -61,15 +62,6 @@ const BoxDetail: React.FC = () => {
             transition: {duration: 0.6, delay: 0.2},
         })
     }
-
-    const icons = ["🎂", "😊", "💖", "⭐", "🧁", "🥰", "🎉", "🎈", "🍰", "✨", "💝", "🌟", "🎁", "🍭", "🦄"]
-    const randomIcons = Array.from({length: 25}, (_, i) => ({
-        icon: icons[Math.floor(Math.random() * icons.length)],
-        top: `${Math.random() * 85 + 5}%`,
-        left: `${Math.random() * 85 + 5}%`,
-        rotation: Math.random() * 360 - 180,
-    }))
-
     // Danh sách icon và vị trí cố định
     const fixedIcons = [
         {icon: "🎂", top: "50%", left: "25%", rotation: -10},
@@ -88,56 +80,23 @@ const BoxDetail: React.FC = () => {
         {icon: "🦄", top: "75%", left: "75%", rotation: -15},
     ]
 
-    const finalContent = (
-        <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold text-pink-600">Thư Xin Lỗi 💕</h2>
-            <p className="text-pink-500 leading-relaxed">Dành cho người yêu xinh đẹp của anh</p>
-            <p className="text-pink-600 font-semibold">Em yêu của anh 💕</p>
-            <div className="text-pink-500 text-sm leading-relaxed space-y-3">
-                <p>
-                    Anh không muốn cãi nhau với em nữa. Mỗi lần chúng ta to tiếng, anh cảm thấy có gì đó tan vỡ trong
-                    lòng, vì
-                    điều duy nhất anh muốn là thấy em cười và hạnh phúc bên anh.
-                </p>
-                <p>
-                    Em là điều tuyệt vời nhất trong cuộc đời anh. Từ khi có em, mọi thứ đều có ý nghĩa và đầy màu sắc
-                    hơn. Dù ngày
-                    có khó khăn đến đâu, chỉ cần nhìn thấy em, mọi thứ lại trở nên tốt đẹp.
-                </p>
-            </div>
-            <p className="text-pink-600 font-semibold mt-6">
-                Với tất cả tình yêu,
-                <br/>
-                Người yêu em sâu đậm 💕
-            </p>
-            <div className="text-2xl">💖 ✨ 💕</div>
-        </div>
-    )
-
-    const message = `
-        Nhân ngày 20/10, anh chúc em luôn xinh đẹp, hạnh phúc và tràn đầy năng lượng tích cực 💐  
-        Em chính là món quà tuyệt vời nhất mà cuộc đời đã ban cho anh.  
-        Mỗi ngày trôi qua có em, anh thấy mọi thứ đều rực rỡ hơn 🌸  
-        Cảm ơn em đã luôn ở bên anh, yêu và hiểu anh hơn bất cứ ai 💕
-          `;
-
     const loveCard = (
         <MessageCard
-            title="💐 Lời Chúc 20/10"
-            subtitle="Gửi đến em - người con gái tuyệt vời nhất"
-            message={message}
-            signature="Người yêu em ❤️"
+            title={title}
+            subtitle={subTitle}
+            message={messageText}
+            signature={signature}
         />
     );
 
     return (
         <div
-            className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-400 via-pink-400 to-red-400">
+            className="h-screen overflow-hidden over flex flex-col items-center justify-center bg-gradient-to-br from-purple-400 via-pink-400 to-red-400">
             <div className="relative cursor-pointer mt-12" style={{perspective: "1000px"}} onClick={handleClick}>
                 <div className="relative">
                     {/* Thân hộp */}
                     <div
-                        className="w-64 h-56 bg-gradient-to-br from-red-500 to-red-600 rounded-lg shadow-2xl relative overflow-hidden "
+                        className="w-48 h-44 md:w-64 md:h-56 bg-gradient-to-br from-red-500 to-red-600 rounded-lg shadow-2xl relative overflow-hidden "
                         style={{
                             transformStyle: "preserve-3d",
                             transform: "translateZ(0px)",
@@ -226,8 +185,8 @@ const BoxDetail: React.FC = () => {
                 style={{width: "500px", height: "700px"}}
             >
                 <div className="w-full h-full flex items-start justify-center">
-                    {/*<ImageCarousel images={giftImages} finalContent={finalContent}/>*/}
-                    <ImageCarousel images={giftImages} finalContent={loveCard}/>
+                    <ImageCarousel images={imageMessage} finalContent={loveCard}/>
+                    {/*<ImageCarousel images={giftTemplates} finalContent={loveCard}/>*/}
                 </div>
             </motion.div>
 

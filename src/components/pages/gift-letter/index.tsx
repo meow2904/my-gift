@@ -1,5 +1,5 @@
 import Letter from "@/components/ui/letter";
-import ParticleBackground from "@/components/pages/test";
+import ParticleBackground from "@/components/ui/particle";
 
 export default function  GiftLetter() {
     return (
