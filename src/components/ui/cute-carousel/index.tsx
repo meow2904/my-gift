@@ -3,6 +3,7 @@
 import React, {useRef, useState, type TouchEvent, type MouseEvent} from "react"
 import {ImageData} from "@/data/sample"
 import Link from "next/link"
+import Image from "next/image"
 
 interface ImageCarouselProps {
     images: ImageData[]
@@ -43,23 +44,35 @@ export function ImageCarousel({images, finalContent, returnHome}: ImageCarouselP
         setDragStart(clientX)
     }
 
+    const dragOffsetRef = useRef(0)
+
     const handleDragMove = (clientX: number) => {
         if (dragStart !== null) {
-            const offset = clientX - dragStart
-            // ✅ Giới hạn phạm vi kéo tối đa ±80px
-            const clampedOffset = Math.max(-150, Math.min(150, offset))
-            setDragOffset(clampedOffset)
+            const offset = Math.max(-150, Math.min(150, clientX - dragStart))
+            dragOffsetRef.current = offset
+            // Cập nhật transform trực tiếp lên DOM
+            if (containerRef.current) {
+                containerRef.current.style.transform = `translateX(${offset}px)`
+            }
         }
     }
 
     const handleDragEnd = () => {
         if (dragStart !== null) {
-            if (dragOffset < -50) handleNext()
-            else if (dragOffset > 50) handlePrevious()
+            if (dragOffsetRef.current < -50) handleNext()
+            else if (dragOffsetRef.current > 50) handlePrevious()
             setDragStart(null)
-            setDragOffset(0)
+            dragOffsetRef.current = 0
+            if (containerRef.current) {
+                containerRef.current.style.transition = "transform 0.3s ease-out"
+                containerRef.current.style.transform = "translateX(0)"
+                setTimeout(() => {
+                    if (containerRef.current) containerRef.current.style.transition = "none"
+                }, 300)
+            }
         }
     }
+
 
     // Touch events
     const handleTouchStart = (e: TouchEvent) => handleDragStart(e.touches[0].clientX)
@@ -80,7 +93,7 @@ export function ImageCarousel({images, finalContent, returnHome}: ImageCarouselP
             {/* 🖼 Chỉ phần này có hiệu ứng slide */}
             <div
                 ref={containerRef}
-                className="slide select-none cursor-grab active:cursor-grabbing"
+                className="slide select-none cursor-grab active:cursor-grabbing will-change-transform touch-pan-y"
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
@@ -99,12 +112,17 @@ export function ImageCarousel({images, finalContent, returnHome}: ImageCarouselP
                                 <div className="w-full max-w-md from-pink-50 to-white p-2 rounded-2xl shadow-2xl">
                                     {/* Image frame - compact version */}
                                     <div className="bg-gradient-to-br from-pink-200 to-white p-0 rounded-3xl shadow-lg mb-4">
-                                        <img
-                                            src={currentImage.url || "/placeholder.svg"}
-                                            alt="Cute image"
-                                            className="w-full h-70 object-cover rounded-3xl pointer-events-none"
-                                            draggable={false}
-                                        />
+                                        <div className="relative w-full h-60 sm:h-72 md:h-80 rounded-3xl overflow-hidden">
+                                            <Image
+                                                src={currentImage.url || "/placeholder.svg"}
+                                                alt="Cute image"
+                                                fill
+                                                className="object-cover pointer-events-none select-none"
+                                                priority={currentIndex === 0}
+                                                sizes="(max-width: 768px) 100vw, 500px"
+                                            />
+                                        </div>
+
                                     </div>
 
                                     {/* Text content - compact version */}
