@@ -7,9 +7,10 @@ import Link from "next/link"
 interface ImageCarouselProps {
     images: ImageData[]
     finalContent?: React.ReactNode
+    returnHome?: () => void
 }
 
-export function ImageCarousel({images, finalContent}: ImageCarouselProps) {
+export function ImageCarousel({images, finalContent, returnHome}: ImageCarouselProps) {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [showFinal, setShowFinal] = useState(false)
     const [dragStart, setDragStart] = useState<number | null>(null)
@@ -94,23 +95,25 @@ export function ImageCarousel({images, finalContent}: ImageCarouselProps) {
             >
                 {
                     !showFinal ? (
-                            <>
-                                {/* Image frame - compact version */}
-                                <div className="bg-gradient-to-br from-pink-100 to-white p-0 rounded-3xl shadow-lg mb-3">
-                                    <img
-                                        src={currentImage.url || "/placeholder.svg"}
-                                        alt="Cute image"
-                                        className="w-full h-70 object-cover rounded-3xl pointer-events-none"
-                                        draggable={false}
-                                    />
-                                </div>
+                            <div className="pb-2">
+                                <div className="w-full max-w-md from-pink-50 to-white p-2 rounded-2xl shadow-2xl">
+                                    {/* Image frame - compact version */}
+                                    <div className="bg-gradient-to-br from-pink-200 to-white p-0 rounded-3xl shadow-lg mb-4">
+                                        <img
+                                            src={currentImage.url || "/placeholder.svg"}
+                                            alt="Cute image"
+                                            className="w-full h-70 object-cover rounded-3xl pointer-events-none"
+                                            draggable={false}
+                                        />
+                                    </div>
 
-                                {/* Text content - compact version */}
-                                <div className="text-center space-y-2 mb-3">
-                                    <h2 className="text-xl font-bold text-pink-600 animate-bounce-subtle">{currentImage.title}</h2>
-                                    <p className="text-pink-400 text-sm font-medium">{currentImage.subtitle}</p>
+                                    {/* Text content - compact version */}
+                                    <div className="text-center space-y-2">
+                                        <h2 className="text-xl font-bold text-pink-600 animate-bounce-subtle">{currentImage.title}</h2>
+                                        <p className="text-pink-400 text-sm font-medium">{currentImage.subtitle}</p>
+                                    </div>
                                 </div>
-                            </>
+                            </div>
                         ) :
                         (
                             <>
@@ -122,12 +125,8 @@ export function ImageCarousel({images, finalContent}: ImageCarouselProps) {
                             </>
                         )
                 }
-
-
             </div>
-
             {/* Next button */}
-
             {
                 !showFinal ? (
                         <>
@@ -135,11 +134,11 @@ export function ImageCarousel({images, finalContent}: ImageCarouselProps) {
                                 <button
                                     onClick={handleNext}
                                     className="w-1/3 text-center cursor-pointer
-                        bg-gradient-to-r from-pink-500 via-yellow-400 to-purple-500
+                        bg-gradient-to-r from-pink-400 to-purple-300
                         text-white font-bold text-sm py-3 rounded-full shadow-lg
                         hover:shadow-xl hover:scale-105 transition-all duration-300"
                                 >
-                                    Tục tiệp đi!! ✨
+                                    Kéo sang đi!! ✨
                                 </button>
                             </div>
                         </>
@@ -154,6 +153,7 @@ export function ImageCarousel({images, finalContent}: ImageCarouselProps) {
                                     bg-gradient-to-r from-pink-500  to-purple-500
                                     text-white font-bold text-sm py-3 rounded-full shadow-lg
                                     hover:shadow-xl hover:scale-105 transition-all duration-300"
+                                    onClick={returnHome}
                                 >
                                     Home 💖
                                 </Link>

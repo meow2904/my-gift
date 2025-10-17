@@ -14,8 +14,10 @@ const BoxDetail: React.FC = () => {
     const [signature, setSignature] = useState("No name")
     const [messageText, setMessageText] = useState(messageTemp)
     const [title, setTitle] = useState("💐 Day 20/10")
-    const [subTitle, setSubTitle] = useState("Gửi đến em - người con gái tuyệt vời nhất")
+    const [subTitle, setSubTitle] = useState()
     const [imageMessage, setImageMessage] = useState<ImageData[]>(giftTemplates)
+    const [audio, setAudio] = useState(null);
+
     const params = useParams();
     const id = params.id as string;
     const getData = useCallback(async () => {
@@ -26,21 +28,34 @@ const BoxDetail: React.FC = () => {
         }
         const data = await response.json();
         setSignature(data.name);
+        setTitle(data.title);
         setMessageText(data.message);
         setImageMessage(generateGiftImages(data.imageUrls))
     }, [])
 
     useEffect(() => {
         getData()
+
     }, []);
 
     const [opened, setOpened] = useState(false)
     const lidControls = useAnimation()
     const messageControls = useAnimation()
 
+    const returnHome = async () => {
+        if (audio) await audio.pause();
+    }
+
     const handleClick = async () => {
         if (opened) return
         setOpened(true)
+        if (!audio)
+        {
+            const newAudio = new Audio('/bg-music/hiphop.mp3');
+            newAudio.volume = 0.5;
+            await newAudio.play();
+            setAudio(newAudio);
+        }
 
         await lidControls.start({
             rotateX: -10,
@@ -90,7 +105,7 @@ const BoxDetail: React.FC = () => {
 
     return (
         <div
-            className="h-screen overflow-hidden over flex flex-col items-center justify-center bg-gradient-to-br from-purple-400 via-pink-400 to-red-400">
+            className="h-screen overflow-hidden over flex flex-col items-center justify-center bg-gradient-to-br from-purple-300 via-pink-100 to-red-300">
             <div className="relative cursor-pointer mt-12" style={{perspective: "1000px"}} onClick={handleClick}>
                 <div className="relative">
                     {/* Thân hộp */}
@@ -178,13 +193,15 @@ const BoxDetail: React.FC = () => {
             <motion.div
                 initial={{opacity: 0, y: 20, scale: 0.8}}
                 animate={messageControls}
-                className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 ${
-                    opened ? "pointer-events-auto" : "pointer-events-none"
-                }`}
-                style={{width: "500px", height: "700px"}}
+                className={`
+                    fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                    z-50 
+                    ${opened ? "pointer-events-auto" : "pointer-events-none"} 
+                    w-[90vw] h-[75vh] sm:w-[400px] sm:h-[560px] md:w-[500px] md:h-[700px]
+                `}
             >
                 <div className="w-full h-full flex items-start justify-center">
-                    <ImageCarousel images={imageMessage} finalContent={loveCard}/>
+                    <ImageCarousel images={imageMessage} finalContent={loveCard} returnHome={returnHome}/>
                     {/*<ImageCarousel images={giftTemplates} finalContent={loveCard}/>*/}
                 </div>
             </motion.div>

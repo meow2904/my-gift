@@ -37,7 +37,7 @@ export default function ParticleBackground() {
         },
         particles: {
             number: {
-                value: 150,
+                value: 180,
                 density: {
                     enable: true,
                 },
@@ -50,28 +50,37 @@ export default function ParticleBackground() {
                 type: "image",
                 options: {
                     image: [
-                        {
-                            // src: "/particle/asian-flower-1.png",
-                            src: "/particle/asian-flower-1.png",
-                            width: 100,
-                            height: 100,
-                            // replaceColor: true, // Thay thế màu nền
-                            // fill: true, // Không vẽ outline
-                        },
-                        {
-                            src: "/particle/asian-flower.png",
-                            width: 100,
-                            height: 100,
-                            // replaceColor: true, // Thay thế màu nền
-                            // fill: true, // Không vẽ outline
-                        },
                         // {
-                        //     src: "/particle/snowflake.png",
+                        //     // src: "/particle/asian-flower-1.png",
+                        //     src: "/particle/asian-flower-1.png",
                         //     width: 100,
                         //     height: 100,
                         //     // replaceColor: true, // Thay thế màu nền
                         //     // fill: true, // Không vẽ outline
                         // },
+                        // {
+                        //     src: "/particle/asian-flower.png",
+                        //     width: 100,
+                        //     height: 100,
+                        //     // replaceColor: true, // Thay thế màu nền
+                        //     // fill: true, // Không vẽ outline
+                        // },
+                        {
+                            src: "/particle/rose.png",
+                            width: 100,
+                            height: 100,
+                        },
+                        {
+                            src: "/particle/rose1.png",
+                            width: 100,
+                            height: 100,
+                        },
+                        {
+                            src: "/particle/rose2.png",
+                            width: 100,
+                            height: 100,
+
+                        },
                     ],
                 },
             },
@@ -83,8 +92,8 @@ export default function ParticleBackground() {
             },
             size: {
                 value: {
-                    min: 3,
-                    max: 15
+                    min: 10,
+                    max: 18
                 },
             },
             rotate: {
@@ -94,7 +103,7 @@ export default function ParticleBackground() {
                 },
                 animation: {
                     enable: true,
-                    speed: 5, // Tốc độ xoay (càng cao càng nhanh)
+                    speed: 10, // Tốc độ xoay (càng cao càng nhanh)
                     sync: false, // Mỗi particle xoay độc lập
                 },
                 direction: "random", // Hướng xoay ngẫu nhiên (clockwise hoặc counter-clockwise)

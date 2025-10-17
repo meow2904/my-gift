@@ -4,7 +4,7 @@
 import {type DragEvent, type ChangeEvent, useCallback, FormEvent, useEffect} from "react"
 
 import {useRef, useState} from "react"
-import {X, Upload, Heart, Sparkles, ImageIcon, Rocket} from "lucide-react"
+import {X, Upload, Heart, Sparkles, ImageIcon, Rocket, Flower} from "lucide-react"
 import LinkShare from "../share-link";
 import toast from "react-hot-toast";
 import {UploadedFile} from "@/types/file-upload/upload";
@@ -21,6 +21,7 @@ export default function GiftFormUpload() {
     const fileInputRef = useRef<HTMLInputElement>(null)
     const [link, setLink] = useState('');
     const [message, setMessage] = useState("")
+    const [title, setTitle] = useState("")
     const [name, setName] = useState("")
 
     const handleDragEnter = useCallback((e: DragEvent<HTMLDivElement>) => {
@@ -121,7 +122,7 @@ export default function GiftFormUpload() {
             // Lưu thông tin vào KV
             const linkRes = await fetch('/api/link', {
                 method: 'POST',
-                body: JSON.stringify({name, message, imageUrls: urls}),
+                body: JSON.stringify({name, message, title, imageUrls: urls}),
                 headers: {'Content-Type': 'application/json'},
             });
             if (!linkRes.ok) {
@@ -143,11 +144,11 @@ export default function GiftFormUpload() {
             toast.error("Hãy tải lên ít nhất một file ảnh!")
             return false;
         }
-        if (name.length === 0)
-        {
-            toast.error("Hãy nhập tên của bạn!")
-            return false;
-        }
+        // if (name.length === 0)
+        // {
+        //     toast.error("Hãy nhập tên của bạn!")
+        //     return false;
+        // }
         if (message.length === 0)
         {
             toast.error("Hãy nhắn gửi gì đó!")
@@ -170,7 +171,7 @@ export default function GiftFormUpload() {
     }, [files]);
 
     return (
-        <div className="min-h-screen gradient-bg flex items-center justify-center p-4 relative overflow-hidden">
+        <div className="min-h-screen gradient-bg flex items-center justify-center p-4 relative overflow-hidden ">
             <div className="absolute top-10 left-10 float">
                 <Heart className="w-12 h-12 text-purple-300/50" fill="currentColor" />
             </div>
@@ -187,7 +188,7 @@ export default function GiftFormUpload() {
             {
                 link.length == 0 && (
                     <form onSubmit={handleCreateLink}
-                          className="w-full max-w-2xl p-8 md:p-12 shadow-2xl backdrop-blur-sm bg-card/95  rounded-3xl bg-pink-50/50">
+                          className="w-full max-w-xl p-8 md:p-12 shadow-2xl backdrop-blur-sm bg-card/95  rounded-3xl bg-pink-50/50">
                         <div className="space-y-8">
                             {/* Header */}
                             <div className="text-center space-y-3">
@@ -272,7 +273,22 @@ export default function GiftFormUpload() {
                                     placeholder="Nhập tên của bạn"
                                     value={name}
                                     onChange={(e: any) => setName(e.target.value)}
-                                    className="w-full p-3 text-base bg-muted/50 border-1 focus:border-primary rounded-2xl h-12"
+                                    className="w-full p-3 text-base bg-muted/50 border-1 focus:border-primary rounded-xl h-12"
+                                />
+                            </div>
+
+                            <div className="space-y-3">
+                                <label htmlFor={"title"}
+                                       className="text-sm font-semibold text-foreground flex items-center gap-2">
+                                    <Flower className="w-4 h-4 text-pink-400"/>
+                                    Tiêu đề nội dung
+                                </label>
+                                <input
+                                    id={"title"}
+                                    placeholder="Hãy nhập tiêu đề cho nội dung"
+                                    value={title}
+                                    onChange={(e: any) => setTitle(e.target.value)}
+                                    className="w-full p-3 text-base bg-muted/50 border-1 focus:border-primary rounded-xl h-12"
                                 />
                             </div>
 
@@ -285,16 +301,16 @@ export default function GiftFormUpload() {
                                 </label>
                                 <textarea
                                     id="message"
-                                    placeholder="Viết điều gì đó thật đáng yêu... 🌸"
+                                    placeholder="Viết điều gì đó bạn muốn nhắn gửi... 🌸"
                                     value={message}
                                     onChange={(e: any) => setMessage(e.target.value)}
-                                    className="min-h-[120px] w-full p-3 resize-none text-base bg-muted/50 border-1 focus:border-primary rounded-2xl"
+                                    className="min-h-[120px] w-full p-3 resize-none text-base bg-muted/50 border-1 focus:border-primary rounded-xl"
                                 />
                             </div>
 
 
                             {/* Action Buttons */}
-                            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center ">
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center ">
                                 <button type="submit"
                                         disabled={loading}
                                         className={`md:w-1/3 rounded-2xl text-base font-semibold h-14 bg-gradient-to-r
@@ -308,7 +324,7 @@ export default function GiftFormUpload() {
                                         <Loading variant="dots" size="sm" text="Đang tạo..."/>
                                     ) : (
                                         <>
-                                            Chia sẻ
+                                            Tạo link
                                             <Rocket className="w-4 h-4 text-red-400/50" fill="currentColor"/>
                                         </>
                                     )}

@@ -6,9 +6,9 @@ export function FloatingProfile() {
     const [isOpen, setIsOpen] = useState(false)
 
     const socialLinks = [
-        {icon: Facebook, label: "Facebook", href: "https://www.facebook.com/nguyenhuy.99bn"},
-        {icon: Github, label: "Github", href: "https://github.com/meow2904"},
-        {icon: Mail, label: "Email", href: "mailto:dinhhuynguyen.99bn@gmail.com"},
+        {icon: Facebook, label: "Facebook", href: "https://www.facebook.com/nguyenhuy.99bn", color: "text-blue-500"},
+        {icon: Github, label: "Github", href: "https://github.com/meow2904", color: "text-black"},
+        {icon: Mail, label: "Email", href: "mailto:dinhhuynguyen.99bn@gmail.com", color: "text-red-400"},
     ]
 
     return (
@@ -50,8 +50,7 @@ export function FloatingProfile() {
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-3 p-2 rounded-lg hover:bg-accent transition-colors group"
                             >
-                                <link.icon
-                                    className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors"/>
+                                <link.icon className={`w-5 h-5 text-muted-foreground transition-colors ${link.color}`}/>
                                 <span className="text-sm font-medium">{link.label}</span>
                             </a>
                         ))}
