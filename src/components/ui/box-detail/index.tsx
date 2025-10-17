@@ -39,7 +39,6 @@ const BoxDetail: React.FC = () => {
     const messageControls = useAnimation()
 
     const handleClick = async () => {
-        console.log("[v0] Gift box clicked, opened state:", opened)
         if (opened) return
         setOpened(true)
 

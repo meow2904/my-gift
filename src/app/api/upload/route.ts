@@ -5,7 +5,6 @@ export async function POST(req: Request) {
     try {
         const formData = await req.formData();
         const files = formData.getAll('files') as File[];
-
         if (files.length === 0) {
             return NextResponse.json(
                 { error: 'No files uploaded' },
@@ -21,9 +20,6 @@ export async function POST(req: Request) {
                 console.error('Invalid file:', file);
                 continue;
             }
-
-            console.log('Uploading file:', file.name, 'Size:', file.size);
-
             // Convert File to Buffer for Vercel Blob
             const bytes = await file.arrayBuffer();
             const buffer = Buffer.from(bytes);

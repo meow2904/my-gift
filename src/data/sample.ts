@@ -9,28 +9,53 @@ export interface ImageData {
 export const giftTemplates: ImageData[] = [
     {
         url: "/testpic/cute-cat-with-pink-bow.jpg",
-        title: "Chúc mừng ngày của phái đẹp! 💐",
-        subtitle: "Chúc chị em luôn xinh đẹp, tự tin và hạnh phúc mỗi ngày!",
+        title: "Tỏa sáng như nắng mai ☀️",
+        subtitle: "Chúc bạn luôn rạng rỡ và ngọt ngào mỗi ngày",
     },
     {
         url: "/testpic/cute-puppy-with-heart.jpg",
-        title: "Gửi đến những bông hoa tuyệt vời nhất! 🌸",
-        subtitle: "Cảm ơn vì đã làm cho thế giới này trở nên dịu dàng và tươi sáng hơn!",
+        title: "Xinh như hoa, ngọt như kẹo 🍬",
+        subtitle: "Chúc bạn luôn vui vẻ và tràn đầy yêu thương!",
     },
     {
         url: "/testpic/cute-bunny-with-flowers.jpg",
-        title: "Ngày đặc biệt của phái đẹp! 🎀",
-        subtitle: "Chúc chị em luôn tràn đầy năng lượng, nụ cười và yêu thương!",
+        title: "Ngày của những thiên thần nhỏ 🪽",
+        subtitle: "Chúc bạn mãi dễ thương, hồn nhiên và hạnh phúc!",
     },
     {
         url: "/testpic/cute-bear-with-balloon.jpg",
-        title: "Tôn vinh một nửa thế giới! 🌺",
-        subtitle: "Chúc các chị em mãi rạng rỡ, thành công và được yêu thương thật nhiều!",
+        title: "Bạn là bông hoa đẹp nhất 🌹",
+        subtitle: "Tỏa hương và lan tỏa niềm vui đến mọi người!",
     },
     {
         url: "/testpic/cute-hamster-eating.jpg",
-        title: "Ngày dành riêng cho phái đẹp 💖",
-        subtitle: "Chúc chị em luôn vui vẻ, mạnh mẽ và hạnh phúc trong từng khoảnh khắc!",
+        title: "Cười thật tươi nhé 😘",
+        subtitle: "Vì bạn xứng đáng với những điều tuyệt vời nhất!",
+    },
+    {
+        url: "/testpic/sparkle-star.jpg",
+        title: "Tỏa sáng theo cách riêng của bạn ✨",
+        subtitle: "Không ai giống bạn — và đó là điều kỳ diệu!",
+    },
+    {
+        url: "/testpic/sweet-fox.jpg",
+        title: "Ngày đặc biệt cho người đặc biệt 💕",
+        subtitle: "Chúc bạn luôn xinh, luôn yêu đời, và luôn được yêu!",
+    },
+    {
+        url: "/testpic/lovely-panda.jpg",
+        title: "Ngọt ngào như mật ong 🍯",
+        subtitle: "Chúc bạn một ngày tràn ngập niềm vui và tiếng cười!",
+    },
+    {
+        url: "/testpic/cute-bear-with-gift.jpg",
+        title: "Một món quà nhỏ cho nụ cười to 🎁",
+        subtitle: "Chúc bạn luôn hạnh phúc, yêu đời và đáng yêu như thế!",
+    },
+    {
+        url: "/testpic/rose-charm.jpg",
+        title: "Đẹp tựa đóa hoa hồng 🌸",
+        subtitle: "Mong mỗi ngày đều là ngày tuyệt vời của bạn!",
     },
 ]
 
