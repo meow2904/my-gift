@@ -16,7 +16,7 @@ const BoxDetail: React.FC = () => {
     const [title, setTitle] = useState("💐 Day 20/10")
     const [subTitle, setSubTitle] = useState()
     const [imageMessage, setImageMessage] = useState<ImageData[]>(giftTemplates)
-    const [audio, setAudio] = useState(null);
+    const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
     const params = useParams();
     const id = params.id as string;
