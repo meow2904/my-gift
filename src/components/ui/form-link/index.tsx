@@ -161,6 +161,7 @@ export default function GiftFormUpload() {
         setFiles([])
         setName("")
         setMessage("")
+        setTitle("")
         setLink("")
     }, [])
 
