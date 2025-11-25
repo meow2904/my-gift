@@ -16,7 +16,7 @@ export function FloatingProfile() {
             {/* Popup Card */}
             <div
                 className={`absolute bottom-16 right-0 rounded-2xl transition-all duration-300 ease-out 
-                  bg-gradient-to-tr from-pink-200 via-pink-300 to-purple-50 
+                  bg-gradient-to-tr from-pink-200 via-pink-100 to-purple-100 
                   ${isOpen ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-95 pointer-events-none"}`}
             >
                 <div className="w-80 p-3 shadow-2xl border-0 ">
