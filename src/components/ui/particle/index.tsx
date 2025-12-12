@@ -65,22 +65,32 @@ export default function ParticleBackground() {
                         //     // replaceColor: true, // Thay thế màu nền
                         //     // fill: true, // Không vẽ outline
                         // },
+                        // {
+                        //     src: "/particle/rose.png",
+                        //     width: 100,
+                        //     height: 100,
+                        // },
+                        // {
+                        //     src: "/particle/rose1.png",
+                        //     width: 100,
+                        //     height: 100,
+                        // },
+                        // {
+                        //     src: "/particle/rose2.png",
+                        //     width: 100,
+                        //     height: 100,
+                        //
+                        // },
                         {
-                            src: "/particle/rose.png",
-                            width: 100,
-                            height: 100,
+                            src: "/particle/snowflake.png",
+                            width: 20,
+                            height: 20,
                         },
                         {
-                            src: "/particle/rose1.png",
-                            width: 100,
-                            height: 100,
-                        },
-                        {
-                            src: "/particle/rose2.png",
-                            width: 100,
-                            height: 100,
-
-                        },
+                            src: "/particle/snow.png",
+                            width: 20,
+                            height: 20,
+                        }
                     ],
                 },
             },
@@ -92,8 +102,8 @@ export default function ParticleBackground() {
             },
             size: {
                 value: {
-                    min: 10,
-                    max: 18
+                    min: 3,
+                    max: 12
                 },
             },
             rotate: {
@@ -103,7 +113,7 @@ export default function ParticleBackground() {
                 },
                 animation: {
                     enable: true,
-                    speed: 10, // Tốc độ xoay (càng cao càng nhanh)
+                    speed: 15, // Tốc độ xoay (càng cao càng nhanh)
                     sync: false, // Mỗi particle xoay độc lập
                 },
                 direction: "random", // Hướng xoay ngẫu nhiên (clockwise hoặc counter-clockwise)

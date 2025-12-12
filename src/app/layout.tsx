@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Gift",
+    title: "Món quà nhỏ của anh",
     description: "Yêu thương!",
     icons : [
         "/ico/gift.png",

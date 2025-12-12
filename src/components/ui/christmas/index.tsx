@@ -215,12 +215,14 @@ export default function Christmas() {
             train.position.set(11, 5.1, -11);
             train.scale.set(3, 3, 3);
 
-            const geometry = new THREE.BufferGeometry().setFromPoints(trackPoints);
-            const material = new THREE.LineBasicMaterial({ color: 0xff0000 }); // đỏ
-            const line = new THREE.Line(geometry, material); // không loop
-            line.position.set(0, 10, 0);
-            scene.add(line);
-
+            const pointsGeometry = new THREE.BufferGeometry().setFromPoints(trackPoints);
+            const pointsMaterial = new THREE.PointsMaterial({
+                color: 0xff0000, // đỏ
+                size: 0.2,       // kích thước điểm
+            });
+            const points = new THREE.Points(pointsGeometry, pointsMaterial);
+            points.position.set(0, 10, 0);
+            scene.add(points);
 
 
             // const geometry = new THREE.BufferGeometry().setFromPoints(trackPoints);
