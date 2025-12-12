@@ -12,8 +12,8 @@ export default function ChristmasLetter() {
 
     const lyrics = [
         "Gửi em... Phương Thủy !",
-        "Giáng Sinh đến rồi, không khí ngoài kia cũng thật náo nhiệt quá...",
-        "làm anh muốn viết chút gì đó gửi em.",
+        "Giáng Sinh đến rồi, không khí ngoài kia cũng thật náo nhiệt...",
+        "anh muốn viết chút gì đó gửi em.",
         "Dù tụi mình mới biết nhau chưa lâu,",
         "nhưng anh thấy rất vui vì đã được trò chuyện cùng em.",
         "Em biết không…",
@@ -22,8 +22,8 @@ export default function ChristmasLetter() {
         "anh muốn gửi gắm đến em một chút hơi ấm. 🧣",
         "Không phải những món quà xa xỉ, đắt tiền,",
         "chỉ là chiếc khăn quàng nhỏ giúp em giữ ấm những ngày lạnh,",
-        "kết hợp cùng chiếc thiệp online này nữa.",
-        "Tất cả đều là sự quan tâm chân thành anh dành cho em.",
+        "cùng chiếc thiệp online này nữa.",
+        "Tất cả đều là sự quan tâm `chân thành` anh dành cho em.",
         "Chúc em những ngày lễ thật an nhiên,",
         "ăn thật nhiều món ngon,",
         "và luôn giữ nụ cười rạng rỡ như thế nhé. ✨",
