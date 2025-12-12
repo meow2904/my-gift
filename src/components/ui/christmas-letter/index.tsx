@@ -5,12 +5,11 @@ import { useState, useEffect, useRef } from 'react';
 export default function ChristmasLetter() {
     const [isOpen, setIsOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(0);
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(true);
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const starFieldRef = useRef<HTMLDivElement>(null);
     const hasAttemptedPlay = useRef(false);
 
-    // Thay thế mảng lyricContent cũ bằng mảng này
     const lyrics = [
         "Gửi em... Phương Thủy !",
         "Giáng Sinh đến rồi, không khí ngoài kia cũng thật náo nhiệt quá...",
@@ -308,6 +307,9 @@ export default function ChristmasLetter() {
                     z-index: 1000;
                     transition: all 0.3s ease;
                     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
 
                 .audio-button:hover {
@@ -315,18 +317,52 @@ export default function ChristmasLetter() {
                     background: rgba(196, 30, 58, 1);
                 }
 
+                .audio-button:active {
+                    transform: scale(0.95);
+                }
+
                 @media (max-width: 768px) {
                     .santa {
-                        width: 250px;
-                        right: -250px;
+                        width: 200px;
+                        right: -200px;
+                        bottom: 10%;
                     }
+
                     .envelope-wrapper {
-                        transform: scale(0.8);
+                        transform: scale(0.7) !important;
+                        margin-top: -80px !important;
                     }
+
+                    .audio-button {
+                        width: 56px;
+                        height: 56px;
+                        font-size: 22px;
+                        top: 15px;
+                        right: 15px;
+                    }
+
+                    .main-container {
+                        padding-top: 60px;
+                    }
+
+                    .control-section {
+                        margin-top: 0 !important;
+                        transform: scale(0.9);
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .envelope-wrapper {
+                        transform: scale(0.6) !important;
+                        margin-top: -100px !important;
+                    }
+
                     .audio-button {
                         width: 50px;
                         height: 50px;
-                        font-size: 50px;
+                        font-size: 20px;
+                        top: 12px;
+                        right: 12px;
                     }
                 }
             `}</style>
