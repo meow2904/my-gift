@@ -452,7 +452,7 @@ export default function ChristmasLetter() {
                 </div>
 
                 {/* Controls */}
-                <div className="text-center mt-5 z-20 flex items-center gap-4">
+                <div className="text-center z-20 flex items-start gap-2">
                     <button
                         onClick={isOpen ? handleClose : handleOpen}
                         className="font-semibold bg-gradient-to-br from-red-700 via-red-800 to-green-700 border-2 border-yellow-400 rounded-full text-white px-7 py-3 text-lg cursor-pointer font-['Poppins'] shadow-lg hover:translate-y-[-4px] hover:scale-105 hover:shadow-2xl active:scale-95 transition-all duration-300"

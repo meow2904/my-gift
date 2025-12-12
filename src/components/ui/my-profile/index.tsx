@@ -29,7 +29,7 @@ export function FloatingProfile() {
                             </div>
                             <div>
                                 <h3 className="font-semibold text-lg">Nguyễn Đình Huy</h3>
-                                <p className="text-sm text-muted-foreground">Developer - Code Ngu</p>
+                                <p className="text-sm text-muted-foreground">Developer</p>
                             </div>
                         </div>
                         <button className="h-8 w-8 -mt-1 -mr-1 hover:cursor-pointer" onClick={() => setIsOpen(false)}>
@@ -38,7 +38,7 @@ export function FloatingProfile() {
                     </div>
 
                     <p className="text-sm text-muted-foreground mb-4 whitespace-pre-line text-center">
-                        Huy Nguyễn - MeowwMeoww<br/>Vạn sự tùy code !!!
+                        Eat. Sleep. Code. Repeat.<br/>Bàn phím là vũ khí. Code là đạn dược.
                     </p>
 
                     <div className="space-y-2">
@@ -67,9 +67,9 @@ export function FloatingProfile() {
                 aria-label="Toggle profile"
             >
                 {isOpen ? (
-                    <X className="w-6 h-6 transition-transform"/>
+                    <X className="w-6 h-6 transition-transform text-white "/>
                 ) : (
-                    <User className="w-6 h-6 transition-transform group-hover:scale-110"/>
+                    <User className="w-6 h-6 transition-transform text-white group-hover:scale-110"/>
                 )}
             </button>
         </div>
