@@ -11,27 +11,28 @@ export default function ChristmasLetter() {
     const hasAttemptedPlay = useRef(false);
 
     const lyrics = [
-        "Gửi em... Phương Thủy !",
-        "Giáng Sinh đến rồi, không khí ngoài kia cũng thật náo nhiệt...",
-        "anh muốn viết chút gì đó gửi em.",
-        "Dù tụi mình mới biết nhau chưa lâu,",
-        "nhưng anh thấy rất vui vì đã được trò chuyện cùng em.",
-        "Em biết không…",
-        "ấn tượng của anh về em là một cô gái rất dễ thương.",
+        "Gửi em, Phương Thủy,",
+        "Giáng Sinh đến rồi,",
+        "ngoài kia chắc cũng đang rất rộn ràng.",
+        "Anh muốn viết vài dòng nhỏ gửi em.",
+        "Dù tụi mình mới quen nhau chưa lâu,",
+        "nhưng anh thấy vui vì có dịp được trò chuyện cùng em.",
+        "Ấn tượng của anh về em",
+        "là một cô gái rất dễ thương.",
         "Mùa Noel này,",
-        "anh muốn gửi gắm đến em một chút hơi ấm. 🧣",
-        "Không phải những món quà xa xỉ, đắt tiền,",
-        "chỉ là chiếc khăn quàng nhỏ giúp em giữ ấm những ngày lạnh,",
-        "cùng chiếc thiệp online này nữa.",
-        "Tất cả đều là sự quan tâm `chân thành` anh dành cho em.",
-        "Chúc em những ngày lễ thật an nhiên,",
-        "ăn thật nhiều món ngon,",
-        "và luôn giữ nụ cười rạng rỡ như thế nhé. ✨",
-        "Hy vọng là...",
-        "chúng ta sẽ có thêm nhiều dịp để hiểu nhau hơn.",
-        "Cảm ơn em, cảm ơn em vì tất cả. ❤️",
+        "anh gửi đến em một chút hơi ấm nho nhỏ 🧣",
+        "không phải món quà gì đặc biệt,",
+        "chỉ là chiếc khăn quàng",
+        "và một tấm thiệp online,",
+        "như một lời chúc chân thành.",
+        "Chúc em có một mùa Giáng Sinh thật bình yên,",
+        "ăn nhiều món ngon,",
+        "và luôn giữ nụ cười tươi nhé ✨",
+        "Hy vọng thời gian tới,",
+        "tụi mình sẽ còn nói chuyện với nhau nhiều hơn.",
         "Merry Christmas! 🎅"
     ];
+
 
     // Create stars only once
     useEffect(() => {
