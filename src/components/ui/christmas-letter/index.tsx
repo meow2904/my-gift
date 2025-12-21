@@ -10,27 +10,43 @@ export default function ChristmasLetter() {
     const starFieldRef = useRef<HTMLDivElement>(null);
     const hasAttemptedPlay = useRef(false);
 
+    // const lyrics = [
+    //     "Gửi emmm, Phương Thủy",
+    //     "Giáng Sinh đến rồi,",
+    //     "ngoài kia chắc cũng đang rất rộn ràng.",
+    //     "Anh muốn viết vài dòng nhỏ gửi em.",
+    //     "Dù tụi mình mới quen nhau chưa lâu,",
+    //     "nhưng anh thấy vui vì có dịp được trò chuyện cùng em.",
+    //     "Ấn tượng của anh về em",
+    //     "là một cô gái rất dễ thương.",
+    //     "Mùa Noel này,",
+    //     "anh gửi đến em một chút hơi ấm nho nhỏ 🧣",
+    //     "không phải món quà gì đặc biệt,",
+    //     "chỉ là chiếc khăn quàng",
+    //     "và một tấm thiệp online,",
+    //     "như một lời chúc chân thành.",
+    //     "Chúc em có một mùa Giáng Sinh thật bình yên,",
+    //     "ăn nhiều món ngon,",
+    //     "và luôn giữ nụ cười tươi nhé ✨",
+    //     "Hy vọng thời gian tới,",
+    //     "tụi mình sẽ còn nói chuyện với nhau nhiều hơn.",
+    //     "Merry Christmas! 🎅"
+    // ];
+
     const lyrics = [
-        "Gửi em, Phương Thủy,",
-        "Giáng Sinh đến rồi,",
-        "ngoài kia chắc cũng đang rất rộn ràng.",
-        "Anh muốn viết vài dòng nhỏ gửi em.",
-        "Dù tụi mình mới quen nhau chưa lâu,",
-        "nhưng anh thấy vui vì có dịp được trò chuyện cùng em.",
-        "Ấn tượng của anh về em",
-        "là một cô gái rất dễ thương.",
-        "Mùa Noel này,",
-        "anh gửi đến em một chút hơi ấm nho nhỏ 🧣",
-        "không phải món quà gì đặc biệt,",
-        "chỉ là chiếc khăn quàng",
-        "và một tấm thiệp online,",
-        "như một lời chúc chân thành.",
-        "Chúc em có một mùa Giáng Sinh thật bình yên,",
-        "ăn nhiều món ngon,",
-        "và luôn giữ nụ cười tươi nhé ✨",
-        "Hy vọng thời gian tới,",
-        "tụi mình sẽ còn nói chuyện với nhau nhiều hơn.",
-        "Merry Christmas! 🎅"
+        "Gửi emmm Phương Thủy,",
+        "Giáng Sinh chuẩn bị đến rồi,",
+        "thấy ngoài đường mọi người rộn ràng quá nên anh cũng muốn nhắn vài câu.",
+        "Tụi mình biết nhau cũng chưa lâu,",
+        "nhưng anh thấy rất vui khi được nói chuyện với em.",
+        "Nói thật là anh thấy em cute dễ thương lắm.",
+        "Noel này anh có món quà nhỏ gửi em 🧣",
+        "Anh tặng em chiếc khăn quàng với tấm thiệp này,",
+        "Hy vọng em sẽ thích nó",
+        "Chúc em có một mùa Giáng Sinh bình yên,",
+        "được ăn nhiều món ngon và lúc nào cũng cười tươi như vậy ✨",
+        "Hy vọng thời gian tới tụi mình có thể đi chơi và nói chuyện cùng nhau nhiều hơn.",
+        "Merry Christmas! 🥰"
     ];
 
 

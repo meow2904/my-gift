@@ -7,12 +7,12 @@ import ChristmasLetter from "@/components/ui/christmas-letter";
 
 export default function Home() {
   return (
-      // <GiftLetter></GiftLetter>
-      // <GiftBox/>
-      // <Christmas/>
-      <>
-        <ParticleBackground/>
-        <ChristmasLetter/>
-      </>
+    // <GiftLetter></GiftLetter>
+    // <GiftBox/>
+    // <Christmas/>
+    <>
+      <ParticleBackground />
+      <ChristmasLetter />
+    </>
   );
 }
